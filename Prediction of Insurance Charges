@@ -1,0 +1,291 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "2c86019e",
+   "metadata": {
+    "_cell_guid": "b1076dfc-b9ad-4769-8c92-a6c4dae69d19",
+    "_uuid": "8f2839f25d086af736a60e9eeb907d3b93b6e0e5",
+    "execution": {
+     "iopub.execute_input": "2025-03-29T16:01:06.987598Z",
+     "iopub.status.busy": "2025-03-29T16:01:06.987157Z",
+     "iopub.status.idle": "2025-03-29T16:01:09.715647Z",
+     "shell.execute_reply": "2025-03-29T16:01:09.714684Z"
+    },
+    "papermill": {
+     "duration": 2.73403,
+     "end_time": "2025-03-29T16:01:09.717494",
+     "exception": false,
+     "start_time": "2025-03-29T16:01:06.983464",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import seaborn as sns\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "8200e3c1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-03-29T16:01:09.723055Z",
+     "iopub.status.busy": "2025-03-29T16:01:09.722515Z",
+     "iopub.status.idle": "2025-03-29T16:01:09.766177Z",
+     "shell.execute_reply": "2025-03-29T16:01:09.765054Z"
+    },
+    "papermill": {
+     "duration": 0.048083,
+     "end_time": "2025-03-29T16:01:09.767999",
+     "exception": false,
+     "start_time": "2025-03-29T16:01:09.719916",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>index</th>\n",
+       "      <th>age</th>\n",
+       "      <th>sex</th>\n",
+       "      <th>bmi</th>\n",
+       "      <th>children</th>\n",
+       "      <th>smoker</th>\n",
+       "      <th>region</th>\n",
+       "      <th>charges</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>19</td>\n",
+       "      <td>female</td>\n",
+       "      <td>27.900</td>\n",
+       "      <td>0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>southwest</td>\n",
+       "      <td>16884.92400</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>18</td>\n",
+       "      <td>male</td>\n",
+       "      <td>33.770</td>\n",
+       "      <td>1</td>\n",
+       "      <td>no</td>\n",
+       "      <td>southeast</td>\n",
+       "      <td>1725.55230</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>2</td>\n",
+       "      <td>28</td>\n",
+       "      <td>male</td>\n",
+       "      <td>33.000</td>\n",
+       "      <td>3</td>\n",
+       "      <td>no</td>\n",
+       "      <td>southeast</td>\n",
+       "      <td>4449.46200</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>3</td>\n",
+       "      <td>33</td>\n",
+       "      <td>male</td>\n",
+       "      <td>22.705</td>\n",
+       "      <td>0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>northwest</td>\n",
+       "      <td>21984.47061</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>4</td>\n",
+       "      <td>32</td>\n",
+       "      <td>male</td>\n",
+       "      <td>28.880</td>\n",
+       "      <td>0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>northwest</td>\n",
+       "      <td>3866.85520</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   index  age     sex     bmi  children smoker     region      charges\n",
+       "0      0   19  female  27.900         0    yes  southwest  16884.92400\n",
+       "1      1   18    male  33.770         1     no  southeast   1725.55230\n",
+       "2      2   28    male  33.000         3     no  southeast   4449.46200\n",
+       "3      3   33    male  22.705         0     no  northwest  21984.47061\n",
+       "4      4   32    male  28.880         0     no  northwest   3866.85520"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df=pd.read_csv(\"/kaggle/input/prediction-of-insurance-charges-using-age-gender/insurance.csv\")\n",
+    "df.head(5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "45cbd4f1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-03-29T16:01:09.773379Z",
+     "iopub.status.busy": "2025-03-29T16:01:09.773038Z",
+     "iopub.status.idle": "2025-03-29T16:01:09.783366Z",
+     "shell.execute_reply": "2025-03-29T16:01:09.782412Z"
+    },
+    "papermill": {
+     "duration": 0.014555,
+     "end_time": "2025-03-29T16:01:09.784850",
+     "exception": false,
+     "start_time": "2025-03-29T16:01:09.770295",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "index       0\n",
+       "age         0\n",
+       "sex         0\n",
+       "bmi         0\n",
+       "children    0\n",
+       "smoker      0\n",
+       "region      0\n",
+       "charges     0\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.isna().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "3593241c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-03-29T16:01:09.790441Z",
+     "iopub.status.busy": "2025-03-29T16:01:09.790114Z",
+     "iopub.status.idle": "2025-03-29T16:01:09.805219Z",
+     "shell.execute_reply": "2025-03-29T16:01:09.804100Z"
+    },
+    "papermill": {
+     "duration": 0.019997,
+     "end_time": "2025-03-29T16:01:09.807237",
+     "exception": false,
+     "start_time": "2025-03-29T16:01:09.787240",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.duplicated().sum()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kaggle": {
+   "accelerator": "none",
+   "dataSources": [
+    {
+     "datasetId": 2792769,
+     "sourceId": 4821176,
+     "sourceType": "datasetVersion"
+    }
+   ],
+   "dockerImageVersionId": 30918,
+   "isGpuEnabled": false,
+   "isInternetEnabled": true,
+   "language": "python",
+   "sourceType": "notebook"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  },
+  "papermill": {
+   "default_parameters": {},
+   "duration": 6.429739,
+   "end_time": "2025-03-29T16:01:10.530081",
+   "environment_variables": {},
+   "exception": null,
+   "input_path": "__notebook__.ipynb",
+   "output_path": "__notebook__.ipynb",
+   "parameters": {},
+   "start_time": "2025-03-29T16:01:04.100342",
+   "version": "2.6.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
